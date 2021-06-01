@@ -1,34 +1,3 @@
-const container = document.querySelector("div.container");
-function onPageLoaded() {
-
-    //const container = document.querySelector("div.container");
-
-    const btn = document.querySelector("button.fncBtn");
-    btn.addEventListener('click',()=>{clean();startGame();})
-
-    function startGame() {
-
-        let gameInst = new gameState();
-        let gameMode1 = new gameMode();
-
-        const gameField = gameInst.createGameField(container);
-
-        gameField.addEventListener('click', (e) => {
-            cell = e.target;
-            gameInst.addElement(cell);
-            gameMode1.winConditional("Apple");
-            gameMode1.winConditional("Android");
-        });
-    }
-    startGame();
-    
-    function clean(){
-        const gameField = document.querySelector("ul");
-        container.removeChild(gameField);
-    }
-
-}
-
 class gameState {
 
     crossTurn = true;
@@ -114,14 +83,38 @@ class gameMode {
             if (!this.element.classList.contains("elementIsBlocked")) {
                 this.element.classList.add("elementIsBlocked");
             }
-        }
-      //  const container = document.querySelector("div.container");
-
+        }      
         return true;
     }
 }
 
+const container = document.querySelector("div.container");
+let gameInst = new gameState();
+let gameMode1 = new gameMode();
 
+const btn = document.querySelector("button.fncBtn");
+btn.addEventListener('click',()=>{clean();startGame();})
+
+function startGame() {        
+
+    const gameField = gameInst.createGameField(container);
+
+    gameField.addEventListener('click', (e) => {
+        cell = e.target;
+        gameInst.addElement(cell);
+        gameMode1.winConditional("Apple");
+        gameMode1.winConditional("Android");
+    });
+}
+
+function clean(){
+    const gameField = document.querySelector("ul");
+    container.removeChild(gameField);
+}
+
+function onPageLoaded() {
+    startGame();
+}
 
 document.addEventListener("DOMContentLoaded", onPageLoaded);
 

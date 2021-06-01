@@ -1,0 +1,69 @@
+html{
+    display: grid;
+    justify-content: center;
+}
+body {
+    display: grid;
+    max-width: 600px;
+    background: #6bec81;
+    background: -webkit-linear-gradient(to right, #6bec81, #aefe7f, #cbf352);
+    background: linear-gradient(to right, #6bec81, #aefe7f, #cbf352);
+}
+
+div.container{
+    display: grid;
+}
+
+ul.field {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 0;
+}
+
+li {
+    list-style-type: none;
+    display: grid;
+}
+
+li.cell{   
+    width: 200px;
+    height: 200px;       
+}
+
+.cell:hover{
+    background-color: antiquewhite;
+}
+
+.gamecell{
+    display: grid;
+    border: solid;
+    border-width: 1px;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+}
+span.gameOverMessage{
+    text-justify: center;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 5em;
+}
+.fncBtn{    
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+    text-decoration: none;
+    user-select: none;
+    padding: .5em 2em;
+    outline: none;
+    border: 2px solid;
+    border-radius: 1px;
+    transition: 0.2s;
+}      
+.fncBtn:hover { background: rgb(243, 165, 165); }
+.fncBtn:active { background: rgb(211, 25, 25) }
+
+.btnContainer{
+    display: grid;
+    justify-self: center;
+}

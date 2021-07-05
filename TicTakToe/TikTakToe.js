@@ -38,7 +38,18 @@ class gameState {
 
 class gameMode {
 
+    constructor(container) {
+        this.container = container;
+    }
+
     elements = document.getElementsByClassName("gamecell");
+    
+    getGameField(){
+        gameField = container.querySelector("ul")
+    }
+    
+   
+    
 
     winConditional(className) {
         //Horizontal condition
@@ -83,38 +94,39 @@ class gameMode {
             if (!this.element.classList.contains("elementIsBlocked")) {
                 this.element.classList.add("elementIsBlocked");
             }
-        }      
+        }
+        const gameOverContainer = document.createElement("div.gameOver");
         return true;
+    }
+
+    startGame() {
+
+    }
+
+    clean() {
+        this.container.removeChild(this.gameField);
     }
 }
 
 const container = document.querySelector("div.container");
 let gameInst = new gameState();
-let gameMode1 = new gameMode();
+gameInst.createGameField(container);
+let gameMode1 = new gameMode(container);
 
-const btn = document.querySelector("button.fncBtn");
-btn.addEventListener('click',()=>{clean();startGame();})
-
-function startGame() {        
-
-    const gameField = gameInst.createGameField(container);
-
-    gameField.addEventListener('click', (e) => {
-        cell = e.target;
+function onPageLoaded() {    
+    gameMode1.gameField.addEventListener('click', (e) => {
+        let cell = e.target;
         gameInst.addElement(cell);
         gameMode1.winConditional("Apple");
         gameMode1.winConditional("Android");
     });
 }
 
-function clean(){
-    const gameField = document.querySelector("ul");
-    container.removeChild(gameField);
-}
-
-function onPageLoaded() {
-    startGame();
-}
+const btn = document.querySelector("button.fncBtn");
+btn.addEventListener('click', () => {
+    gameMode1.clean();
+    gameInst.createGameField(container);
+    onPageLoaded();
+})
 
 document.addEventListener("DOMContentLoaded", onPageLoaded);
-
